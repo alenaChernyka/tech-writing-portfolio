@@ -14,7 +14,7 @@
 
 **Документация:**
 
-* [OpenAPI-спецификация](./tvmaze-openapi/openapi.yml)
+* [OpenAPI](./tvmaze-openapi/openapi.yml)
 * [Swagger UI](https://alenachernyka.github.io/tech-writing-portfolio/tvmaze-openapi/)
 
 ## Документация для разработки мобильного приложения «Полка»
