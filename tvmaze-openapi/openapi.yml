@@ -44,6 +44,8 @@ paths:
               examples:
                 MissingParameters:
                   $ref: '#/components/examples/MissingParameters'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /singlesearch/shows:
     get:
@@ -80,7 +82,8 @@ paths:
             application/json:
               schema:
                 type: "null"
-
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /lookup/shows:
     get:
@@ -109,6 +112,8 @@ paths:
               examples:
                 MissingParameters:
                   $ref: '#/components/examples/MissingParameters'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /search/people:
     get:
@@ -135,6 +140,8 @@ paths:
               examples:
                 MissingParameters:
                   $ref: '#/components/examples/MissingParameters'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /schedule:
     get:
@@ -165,6 +172,8 @@ paths:
                   $ref: '#/components/examples/InvalidDate'
                 InvalidCountryCode:
                   $ref: '#/components/examples/InvalidCountryCode'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /schedule/web:
     get:
@@ -195,6 +204,8 @@ paths:
                   $ref: '#/components/examples/InvalidDate'
                 InvalidCountryCode:
                   $ref: '#/components/examples/InvalidCountryCode'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /schedule/full:
     get: 
@@ -211,12 +222,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScheduleResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
   /shows/{id}:
     get:
       tags:
         - Show
-      summary: Get show
+      summary: Show main information
       description: 'Retrieve primary information about a show.'
       operationId: show
       parameters:
@@ -249,6 +262,39 @@ paths:
               examples:
                 InvalidEmbed:
                   $ref: '#/components/examples/InvalidEmbed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /shows/{id}/episodes:
+    get:
+      tags:
+        - Show
+      summary: Show episode list
+      description: 'Retrieve all episodes for the given show in airing order.'
+      operationId: showEpisodes
+      parameters:
+        - $ref: '#/components/parameters/ShowId'
+        - $ref: '#/components/parameters/Specials'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episodes'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                invalidRoute:
+                  $ref: '#/components/examples/InvalidRoute'
+                showIdNotFound:
+                  $ref: '#/components/examples/ShowIdNotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
 
 components:
   parameters:
@@ -274,7 +320,7 @@ components:
       name: embed[]
       in: query
       description: >
-        **Data to embed in the response**. You can embed multiple values, for example: `?embed[]=episodes&embed[]=cast`.'
+        **Data to embed in the response**. You can embed multiple values, for example: `?embed[]=episodes&embed[]=cast`.
       required: false
       schema:
         type: array
@@ -345,6 +391,15 @@ components:
       schema:
         type: integer
       example: 2993
+
+    Specials:
+      name: specials
+      in: query
+      description: '**Include specials**. Set to `1` or `true` to include both significant and insignificant special episodes in the list.'
+      required: false
+      schema:
+        type: boolean
+      example: true
 
   schemas:
     Show:
@@ -549,13 +604,7 @@ components:
           description: 'HAL-style hypermedia links to related resources.'
           properties:
             self:
-              type: object
-              description: Link to the current show resource.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.tvmaze.com/shows/2993
+              $ref: '#/components/schemas/ShowLink'
 
             previousepisode:
               type: object
@@ -750,20 +799,10 @@ components:
                   example: https://api.tvmaze.com/episodes/553946
 
             show:
-              type: object
-              description: 'Link to the show this episode belongs to.'
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.tvmaze.com/shows/2993
-                name:
-                  type: string
-                  example: Stranger Things
+              $ref: '#/components/schemas/ShowLink'
 
     Country:
-      type:
-        object
+      type: object
       properties:
         name:
           type: string
@@ -799,6 +838,17 @@ components:
           format: uri
           description: 'URL of the original, full-resolution image.'
 
+    ShowLink:
+      type: object
+      description: 'Link to the show.'
+      properties:
+        href:
+          type: string
+          format: uri
+          example: https://api.tvmaze.com/shows/2993
+        name:
+          type: string
+          example: Stranger Things
 
     ShowSearchResponse:
       type: array
@@ -848,6 +898,11 @@ components:
                   show:
                     $ref: '#/components/schemas/Show'
 
+    Episodes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Episode'
+
     Error:
       type: object
       description: 'Standard error response returned by the API for 4xx and 5xx responses.'
@@ -880,6 +935,19 @@ components:
         code:
           type: integer
           description: 'Numeric error code. Currently always `0` — reserved for future use.'
+
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            name: "Too Many Requests"
+            message: ""
+            code: 0
+            status: 429
 
   examples:
     InvalidEmbed:
