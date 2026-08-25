@@ -14,8 +14,9 @@
 
 **Документация:**
 
-* [OpenAPI](./tvmaze-openapi/openapi.yml)
-* [Swagger UI](https://alenachernyka.github.io/tech-writing-portfolio/tvmaze-openapi/)
+- [OpenAPI](./tvmaze-openapi/openapi.yml)
+- [Swagger UI](https://alenachernyka.github.io/tech-writing-portfolio/tvmaze-openapi/)
+- [Decisions](./tvmaze-openapi/decisions.md)
 
 ## Документация для разработки мобильного приложения «Полка»
 
@@ -25,15 +26,15 @@
 
 **О продукте:**
 
-* [Продуктовый бриф](./polka-app-docs/01-product-brief.md)
-* [Глоссарий](./polka-app-docs/02-glossary.md)
-* [Функциональная спецификация](./polka-app-docs/03-functional-spec.md)
-* [Тексты интерфейсов](./polka-app-docs/04-ui-texts.md)
-* [Журнал решений](./polka-app-docs/decision-log.md)
+- [Продуктовый бриф](./polka-app-docs/01-product-brief.md)
+- [Глоссарий](./polka-app-docs/02-glossary.md)
+- [Функциональная спецификация](./polka-app-docs/03-functional-spec.md)
+- [Тексты интерфейсов](./polka-app-docs/04-ui-texts.md)
+- [Журнал решений](./polka-app-docs/decision-log.md)
 
 **О работе над документацией:**
 
-* [План документации](./polka-app-docs/docs-roadmap.md)
-* [Открытые вопросы](./polka-app-docs/open-questions.md)
+- [План документации](./polka-app-docs/docs-roadmap.md)
+- [Открытые вопросы](./polka-app-docs/open-questions.md)
 
 Портфолио будет дополняться новыми примерами документации для разных типов продуктов и задач.
