@@ -418,7 +418,10 @@ components:
     Specials:
       name: specials
       in: query
-      description: '**Include specials**. Set to `1` to include both significant and insignificant special episodes in the list.'
+      description: >
+        **Include specials**. Use `1` to include both significant and insignificant
+        special episodes in the list. Any non-empty value other than `0` also
+        includes specials.
       required: false
       schema:
         type: string
