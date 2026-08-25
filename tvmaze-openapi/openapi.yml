@@ -91,18 +91,32 @@ paths:
         - Search
       summary: Search for shows by external ID
       description: >
-        Searches the TVmaze database for shows by its TheTVDB or Tvrage ID. Specify either `tvrage` or `thetvdb`. At least one parameter is required.
+        Searches the TVmaze database for shows by its TheTVDB, TVRage, or IMDb ID. Specify one of `tvrage`, `thetvdb`, or `imdb`. At least one parameter is required.
       operationId: showLookup
       parameters:
         - $ref: '#/components/parameters/Tvrage'
         - $ref: '#/components/parameters/Thetvdb'
+        - $ref: '#/components/parameters/Imdb'
       responses:
+        '301':
+          description: >
+            Match found. Redirects to the show's URL (`/shows/:id`) via the `Location` header. Most HTTP clients follow this automatically and show the final 200 response instead.
+          headers:
+            Location:
+              description: URL of the matched show.
+              schema:
+                type: string
+                format: uri
+              example: https://api.tvmaze.com/shows/2993
         '200':
-          description: Successful response
+          description: >
+            Match found, as seen by clients that follow redirects automatically (browsers, Postman, and Swagger UI's "Try it out"). This is the final response after following the 301 redirect.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Show'
+        '404':
+          description: No matching show found.
         '400':
           description: Bad request
           content:
@@ -351,6 +365,15 @@ components:
       schema:
         type: integer
       example: 305288
+
+    Imdb:
+      name: imdb
+      in: query
+      description: '**IMDB ID**. The show''s identifier on IMDB.com.'
+      required: false
+      schema:
+        type: string
+      example: tt4574334
 
     Country:
       name: country
