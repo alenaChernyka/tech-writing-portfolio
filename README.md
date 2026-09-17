@@ -10,7 +10,7 @@
 
 **Документация:**
 
-- [Как настроить ведение ежедневных заметок в Obsidian](./obsidian-howto/daily-notes-how-to.md)
+- [Как настроить ведение ежедневных заметок в Obsidian](./obsidian-how-to/daily-notes-how-to.md)
 - [Как настроить автоудаление в чате Telegram](./telegram-how-to/autodelete-how-to.md)
 
 ## OpenAPI TVmaze
