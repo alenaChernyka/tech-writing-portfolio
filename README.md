@@ -2,7 +2,7 @@
 
 Меня зовут Алена Черных. Здесь собраны примеры моей работы над технической документацией.
 
-## Инструкция по ведению ежедневных заметок в Obsidian
+## Пошаговые инструкции
 
 Инструкции в формате How-to по работе с Obsidian и Telegram.
 
@@ -10,8 +10,8 @@
 
 **Документация:**
 
-[Как настроить ведение ежедневных заметок в Obsidian](./obsidian-howto/daily-notes-how-to.md)
-[Как настроить автоудаление в чате Telegram](./telegram-how-to/autodelete-how-to.md)
+- [Как настроить ведение ежедневных заметок в Obsidian](./obsidian-howto/daily-notes-how-to.md)
+- [Как настроить автоудаление в чате Telegram](./telegram-how-to/autodelete-how-to.md)
 
 ## OpenAPI TVmaze
 
