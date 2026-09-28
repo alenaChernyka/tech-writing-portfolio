@@ -36,22 +36,8 @@
 
 ## Пользовательские сценарии
 
-### Создание запаса
-
-![Сценарий создание запаса](../images/add-use-case.svg)
-
-### Просмотр и редактирование запаса
-
-![Сценарий создание запаса](../images/edit-use-case.svg)
-
-### Просмотр и фильтрация всех запасов
-
-![Сценарий создание запаса](../images/filter-use-case.svg)
-
-### Удаление запаса
-
-![Сценарий создание запаса](../images/delete-use-case.svg)
-
-### Поиск по названию запаса
-
-![Сценарий создание запаса](../images/search-use-case.svg)
+- [Создание запаса](use-cases/uc-create-stock.md)
+- [Просмотр и редактирование запаса](use-cases/uc-view-edit-stock.md)
+- [Просмотр и фильтрация всех запасов](use-cases/uc-view-filter-stocks.md)
+- [Удаление запаса](use-cases/uc-delete-stock.md)
+- [Поиск по названию запаса](use-cases/uc-search-stock.md)
