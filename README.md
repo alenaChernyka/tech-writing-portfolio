@@ -40,6 +40,7 @@
 - [Продуктовый бриф](./polka-app-docs/docs/01-product-brief.md)
 - [Глоссарий](./polka-app-docs/docs/02-glossary.md)
 - [Функциональная спецификация](./polka-app-docs/docs/03-functional-spec.md)
+- [Пользовательские сценарии](./polka-app-docs/docs/use-cases/)
 - [Тексты интерфейсов](./polka-app-docs/docs/04-ui-texts.md)
 - [Журнал решений](./polka-app-docs/docs/decision-log.md)
 
