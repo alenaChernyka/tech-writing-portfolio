@@ -1,5 +1,5 @@
 @startuml
-title UC-01. Добавление запаса
+title Добавление запаса
 
 actor Пользователь as user
 participant Приложение as client
